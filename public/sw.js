@@ -36,36 +36,6 @@ self.addEventListener('activate', event => {
 
 
 
-// self.addEventListener('install', event => {
-//   console.log('Service Worker installed');
-
-//   event.waitUntil(
-    
-//     caches.open('keyTypers').then(caches => {
-//       return caches.addAll(['/'])
-  
-//     }).then(() => {
-//       console.log('Resources 뭐시기')
-//     })
-
-//   )
-// });
-
-
-// self.addEventListener('activate', event => {
-//   console.log('Service Worker activated');
-//   event.waitUntil(caches.keys().then(cacheNames => {  // 오타 수정: cacheNames로 변경
-//     return Promise.all(cacheNames.map(cacheName => {
-//       if (cacheName !== 'keyTypers') {  // 오타 수정: 'Ripple'에서 'keyTypers'로 변경
-//         return caches.delete(cacheName);
-//       }
-//     }));
-//   }).then(() => {
-//     console.log('delete cache');
-//   }));
-// });
-
-
 
 self.addEventListener('fetch', event => {
   console.log("fetch intercepted:", event.request.url);
@@ -86,26 +56,3 @@ self.addEventListener('fetch', event => {
 
 
 
-
-
-
-// 네트워크 요청 가로채기
-// self.addEventListener('fetch', event => {
-//   console.log('Fetch intercepted:', event.request.url);
-//   // 캐시에서 리소스 반환 또는 네트워크 요청 수정 가능
-// });
-
-
-// 알림 수신
-self.addEventListener('push', event => {
-  console.log('Push notification received');
-  // 알림을 처리하는 로직 작성 가능
-  const options = {
-    body: '핸들 이빠이 돌려',
-    icon: './key.ico',
-    // 기타 옵션들 설정 가능하다.
-  };
-  event.waitUntil(
-    self.ServiceWorkerRegistration.showNotification('Notification Tite', options)
-  )
-});
